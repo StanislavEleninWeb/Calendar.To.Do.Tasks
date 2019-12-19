@@ -12,20 +12,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import app.dao.UserDAO;
 import app.entity.Role;
 import app.entity.User;
+import app.repository.UserRepository;
 
 @Service
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private UserDAO userDAO;
+	private UserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDAO.findByUsername(username);
+		User user = userRepository.findByUsername(username);
 
 		if (user == null)
 			throw new UsernameNotFoundException(username);
