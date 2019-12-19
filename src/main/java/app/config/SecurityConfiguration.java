@@ -26,8 +26,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/user/**").hasAnyRole("MANAGER", "ADMIN")
-		.antMatchers("/priority/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
@@ -41,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public AuthenticationManager authenticationManager() throws Exception {
-        return authenticationManager();
+        return super.authenticationManager();
     }
 	
 	@Bean
