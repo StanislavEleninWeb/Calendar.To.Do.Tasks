@@ -18,7 +18,7 @@ public class UserAOP {
 	@Autowired
 	private EmailService emailService;
 
-	@Pointcut("execution(* app.service.UserDAO.save(..))")
+	@Pointcut("execution(* app.repository.UserRepository.save(..))")
 	public void afterUserRegister() {
 	}
 
