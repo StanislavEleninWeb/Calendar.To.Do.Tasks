@@ -6,8 +6,8 @@
 	<!-- Start Container -->
 	<div class="container">
 
-		<div class="row">
-			<div class="col-2">
+		<div class="row justify-content-md-center mt-4 pt-4">
+			<div class="col-4">
 				<form class="form-signin" method="POST" action="#"
 					th:action="@{/login}" th:object="${user}">
 					<h2 class="form-signin-heading">Please sign in</h2>
@@ -29,12 +29,12 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col">
-				<a th:href="@{/register}" class="pull-left">Register</a>
+		<div class="row justify-content-md-center mt-2">
+			<div class="col-1">
+				<a th:href="@{/register}" class="float-left">Register</a>
 			</div>
-			<div class="col">
-				<a th:href="@{/forgotten-password}" class="pull-right">Forgot
+			<div class="col-3">
+				<a th:href="@{/forgotten-password}" class="float-right">Forgot
 					your password ?</a>
 			</div>
 		</div>

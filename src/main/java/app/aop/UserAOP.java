@@ -31,17 +31,13 @@ public class UserAOP {
 
 		Object[] args = joinPoint.getArgs();
 
-		to = (String) args[0];
-
-		for (Object arg : args) {
-			System.out.println(arg);
-		}
+		System.out.println(args);
 
 		message = "=========================>>>>>>>>> Method Signature \n";
 		message += joinPoint.getSignature().toString() + "\n";
 		message += "=========================>>>>>>>>> User credentials \n";
 
-		emailService.sendMessage(to, subject, message);
+		//emailService.sendMessage(to, subject, message);
 	}
 
 }

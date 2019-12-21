@@ -23,7 +23,7 @@ public class List {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Long id;
 
 	@NotBlank
 	@Size(min = 2)
@@ -34,7 +34,7 @@ public class List {
 	private String description;
 
 	@CreationTimestamp
-	@Column(name = "created_at")
+	@Column(name = "created_at", updatable = false)
 	private LocalDateTime createdAt;
 
 	@UpdateTimestamp
@@ -54,11 +54,11 @@ public class List {
 		this.description = description;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

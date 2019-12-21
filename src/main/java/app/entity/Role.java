@@ -1,5 +1,6 @@
 package app.entity;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,6 +13,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "role")
@@ -26,6 +30,14 @@ public class Role {
 	@Size(min = 2)
 	@Column(name = "title", nullable = false)
 	private String title;
+
+	@CreationTimestamp
+	@Column(name = "created_at", updatable = false)
+	private LocalDateTime createdAt;
+
+	@UpdateTimestamp
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
 
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
 	private Set<User> users;
@@ -55,6 +67,22 @@ public class Role {
 		this.title = title;
 	}
 
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 	public Set<User> getUsers() {
 		return users;
 	}
@@ -65,7 +93,7 @@ public class Role {
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", title=" + title + "]";
+		return "Role [id=" + id + ", title=" + title + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 
 }

@@ -31,6 +31,9 @@ public class UserController {
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
 
+		System.out.println(user);
+		System.out.println(bindingResult);
+		
 		if (bindingResult.hasErrors()) {
 			return "user/register";
 		}

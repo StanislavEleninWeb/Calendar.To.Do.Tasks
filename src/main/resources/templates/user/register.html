@@ -6,8 +6,8 @@
 	<!-- Start Container -->
 	<div class="container">
 
-		<div class="row">
-			<div class="col-2">
+		<div class="row justify-content-md-center mt-5 pt-5">
+			<div class="col-4">
 				<form class="form-signin" method="POST" action="#"
 					th:action="@{/register}" th:object="${user}">
 					<h2 class="form-signin-heading">Please sign in</h2>
@@ -49,23 +49,23 @@
 						<label for="passwordConfirm" class="sr-only">Confirm
 							Password</label> <input type="password" th:field="*{passwordConfirm}"
 							class="form-control" placeholder="Password" required> <label
-							th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"
-							class="alert alert-danger">PasswordConfirm Error</label>
+							th:if="${#fields.hasErrors('passwordConfirm')}"
+							th:errors="*{passwordConfirm}" class="alert alert-danger">PasswordConfirm
+							Error</label>
 					</p>
 
-					<button class="btn btn-sm btn-primary btn-block" type="submit">Sign
-						in</button>
+					<button class="btn btn-sm btn-success btn-block" type="submit">Register</button>
 
 				</form>
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col">
-				<a th:href="@{/register}" class="pull-left">Register</a>
+		<div class="row justify-content-md-center mt-2">
+			<div class="col-1">
+				<a th:href="@{/register}" class="float-left">Register</a>
 			</div>
-			<div class="col">
-				<a th:href="@{/forgotten-password}" class="pull-right">Forgot
+			<div class="col-3">
+				<a th:href="@{/forgotten-password}" class="float-right">Forgot
 					your password ?</a>
 			</div>
 		</div>

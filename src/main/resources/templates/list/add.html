@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="includes/head.html"></head>
+<body>
+
+	<header th:insert="includes/header.html"></header>
+
+	<!-- Start Container -->
+	<div class="container">
+
+		<div class="row justify-content-md-center mt-4 pt-4">
+			<div class="col-4">
+
+				<form class="form-signin" method="POST" action="#"
+					th:action="@{/list/add}" th:object="${list}">
+					<h2 class="form-signin-heading">Lists Management</h2>
+
+					<p>
+						<label for="title" class="sr-only">Title</label> <input
+							type="text" th:field="*{title}" class="form-control"
+							placeholder="Title" required autofocus>
+					</p>
+
+					<p>
+						<label for="description" class="sr-only">Description</label> <input
+							type="text" th:field="*{description}" class="form-control"
+							placeholder="Description" required>
+					</p>
+
+					<p>
+						<input type="text" th:field="*{createdAt}" class="form-control"
+							required disabled="disabled">
+					</p>
+					<p>
+						<input type="text" th:field="*{updatedAt}" class="form-control"
+							disabled="disabled">
+					</p>
+
+					<input type="hidden" th:field="*{id}">
+					<button class="btn btn-sm btn-success btn-block" type="submit">Save</button>
+				</form>
+
+			</div>
+		</div>
+
+		<div class="row justify-content-md-center mt-2">
+			<div class="col-4">
+				<a th:href="@{/list}">Back</a>
+			</div>
+		</div>
+
+	</div>
+	<!-- End Container -->
+
+</body>
+</html>
