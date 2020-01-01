@@ -46,6 +46,10 @@ public class User {
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
+	@Size(min = 8, max = 8)
+	@Column(name = "salt")
+	private String salt;
+
 	@NotBlank
 	@Size(min = 4, max = 16)
 	@Column(name = "password")
@@ -55,6 +59,10 @@ public class User {
 
 	@Column(name = "active", nullable = false, columnDefinition = "TINYINT", length = 1)
 	private boolean active;
+
+	@Size(min = 128, max = 128)
+	@Column(name = "activation_code")
+	private String activationCode;
 
 	@CreationTimestamp
 	@Column(name = "created_at", nullable = false, updatable = false)
@@ -73,15 +81,18 @@ public class User {
 	}
 
 	public User(@NotBlank @Size(min = 2) @Email String username, @NotBlank @Size(min = 2) String firstName,
-			@NotBlank @Size(min = 2) String lastName, @NotBlank @Size(min = 4, max = 16) String password,
-			String passwordConfirm, boolean active) {
+			@NotBlank @Size(min = 2) String lastName, @Size(min = 8, max = 8) String salt,
+			@NotBlank @Size(min = 4, max = 16) String password, String passwordConfirm, boolean active,
+			@Size(min = 128, max = 128) String activationCode) {
 		super();
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.salt = salt;
 		this.password = password;
 		this.passwordConfirm = passwordConfirm;
 		this.active = active;
+		this.activationCode = activationCode;
 	}
 
 	public Long getId() {
@@ -116,6 +127,14 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -138,6 +157,14 @@ public class User {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getActivationCode() {
+		return activationCode;
+	}
+
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -167,7 +194,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", password=" + password + ", active=" + active + ", createdAt=" + createdAt + ", updatedAt="
+				+ ", salt=" + salt + ", password=" + password + ", passwordConfirm=" + passwordConfirm + ", active="
+				+ active + ", activationCode=" + activationCode + ", createdAt=" + createdAt + ", updatedAt="
 				+ updatedAt + "]";
 	}
 

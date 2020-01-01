@@ -23,6 +23,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@GetMapping("/user")
+	public String index(Model model) {
+
+		model.addAttribute("users", userService.findAll());
+
+		return "user/index";
+	}
+
 	@GetMapping("/register")
 	public String register(@ModelAttribute("user") User user) {
 		return "user/register";
@@ -31,14 +39,15 @@ public class UserController {
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
 
-		System.out.println(user);
-		System.out.println(bindingResult);
+		System.err.println(user);
+		System.err.println(bindingResult);
+
 		
 		if (bindingResult.hasErrors()) {
 			return "user/register";
 		}
 
-		userService.save(user);
+		userService.register(user);
 
 		securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
 
@@ -60,7 +69,7 @@ public class UserController {
 	public String welcome(Model model) {
 		return "user/welcome";
 	}
-	
+
 	@GetMapping("/forgotten-password")
 	public String forgottenPassword() {
 		return "user/forgotten-password";
