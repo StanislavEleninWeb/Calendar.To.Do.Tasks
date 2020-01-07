@@ -51,7 +51,7 @@ public class User {
 	private String salt;
 
 	@NotBlank
-	@Size(min = 4, max = 16)
+	@Size(min = 60, max = 60)
 	@Column(name = "password")
 	private String password;
 	@Transient
@@ -60,7 +60,7 @@ public class User {
 	@Column(name = "active", nullable = false, columnDefinition = "TINYINT", length = 1)
 	private boolean active;
 
-	@Size(min = 128, max = 128)
+	@Size(min = 60, max = 60)
 	@Column(name = "activation_code")
 	private String activationCode;
 

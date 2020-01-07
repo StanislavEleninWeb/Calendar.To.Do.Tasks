@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import app.entity.User;
 import app.service.EmailService;
 
 @Aspect
@@ -18,26 +19,23 @@ public class UserAOP {
 	@Autowired
 	private EmailService emailService;
 
-	@Pointcut("execution(* app.repository.UserRepository.save(..))")
+	@Pointcut("execution(* app.service.UserServiceImpl.register(..))")
 	public void afterUserRegister() {
 	}
 
-	@After("afterUserRegister()")
-	public void afterUserRegisterAdvice(JoinPoint joinPoint) {
+	@After("afterUserRegister() && args(user)")
+	public void afterUserRegisterAdvice(JoinPoint joinPoint, User user) {
 
-		String to;
+		String to = user.getUsername();
 		String subject = "Successfull user registration!";
 		String message;
 
-		Object[] args = joinPoint.getArgs();
+		message = "Success registering!";
+		message += "/n Username: " + user.getUsername();
+		message += "/n Password: " + user.getPasswordConfirm();
+		message += "/n Activation Code: " + user.getActivationCode();
 
-		System.out.println(args);
-
-		message = "=========================>>>>>>>>> Method Signature \n";
-		message += joinPoint.getSignature().toString() + "\n";
-		message += "=========================>>>>>>>>> User credentials \n";
-
-		//emailService.sendMessage(to, subject, message);
+		emailService.sendMessage(to, subject, message);
 	}
 
 }
